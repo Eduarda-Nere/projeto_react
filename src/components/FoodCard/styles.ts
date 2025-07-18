@@ -69,6 +69,6 @@ export const AddToCartButton = styled.button`
     margin-top: auto;
 
     &:hover {
-        background-color: #fff8e6;
+        background-color: #FFEBD9;
     }
 `;
