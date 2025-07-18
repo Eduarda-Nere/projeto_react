@@ -138,6 +138,7 @@ export const ItemQuantity = styled.span`
     margin-left: 8px;
     background-color: rgba(255, 255, 255, 0.3);
     padding: 2px 6px;
+    border-radius: 10px;
 `;
 
 export const FormContainer = styled.form`
