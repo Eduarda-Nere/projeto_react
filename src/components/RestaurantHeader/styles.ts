@@ -93,23 +93,27 @@ export const HeroImage = styled.div`
 export const CategoryText = styled.span`
     position: absolute;
     top: 30px;
-    left: 200px;
+    left: 14%;
     color: white;
     font-size: 30px;
     font-family: 'Montserrat', sans-serif;
     z-index: 1;
 
     @media (max-width: 768px) {
-        left: 20px;
+        left: 5%;
         font-size: 24px;
         top: 20px;
+    }
+
+    @media (min-width: 1600px) {
+        left: 16%;
     }
 `;
 
 export const RestaurantTitle = styled.h1`
     position: absolute;
     bottom: 30px;
-    left: 200px;
+    left: 14%;
     color: white;
     font-size: 32px;
     font-weight: 700;
@@ -118,9 +122,13 @@ export const RestaurantTitle = styled.h1`
     z-index: 1;
 
     @media (max-width: 768px) {
-        left: 20px;
+        left: 5%;
         bottom: 20px;
         font-size: 24px;
+    }
+
+    @media (min-width: 1600px) {
+        left: 16%;
     }
 `;
 
