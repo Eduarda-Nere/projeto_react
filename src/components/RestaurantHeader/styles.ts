@@ -12,7 +12,7 @@ export const NavContainer = styled.nav`
     display: flex;
     justify-content: space-between;
     padding: 24px;
-    background-image: url('/imagens/hero2.png');
+    background-image: url('/imagens/fundo.png');
     background-size: auto 240%;
     background-repeat: repeat-x;
     background-position: center;
