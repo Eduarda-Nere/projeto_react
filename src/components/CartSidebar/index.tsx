@@ -141,10 +141,6 @@ const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose }) => {
                             <S.CheckoutButton
                                 onClick={() => setStep('delivery')}
                                 disabled={items.length === 0}
-                                style={{
-                                    opacity: items.length === 0 ? 0.5 : 1,
-                                    cursor: items.length === 0 ? 'not-allowed' : 'pointer'
-                                }}
                             >
                                 Continuar com a entrega
                             </S.CheckoutButton>
@@ -157,90 +153,104 @@ const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose }) => {
                 <S.FormContainer onSubmit={deliveryForm.handleSubmit}>
                     <S.FormTitle>Entrega</S.FormTitle>
 
-                    <div>
-                        <S.FormInput
-                            name="deliverer"
-                            placeholder="Quem irá entregar"
-                            value={deliveryForm.values.deliverer}
-                            onChange={deliveryForm.handleChange}
-                            onBlur={deliveryForm.handleBlur}
-                            className={checkInputHasError('deliverer', deliveryForm) ? 'error' : ''}
-                        />
-                        {checkInputHasError('deliverer', deliveryForm) && (
-                            <S.ErrorMessage>{deliveryForm.errors.deliverer}</S.ErrorMessage>
-                        )}
-                    </div>
-
-                    <div>
-                        <S.FormInput
-                            name="address"
-                            placeholder="Endereço"
-                            value={deliveryForm.values.address}
-                            onChange={deliveryForm.handleChange}
-                            onBlur={deliveryForm.handleBlur}
-                            className={checkInputHasError('address', deliveryForm) ? 'error' : ''}
-                        />
-                        {checkInputHasError('address', deliveryForm) && (
-                            <S.ErrorMessage>{deliveryForm.errors.address}</S.ErrorMessage>
-                        )}
-                    </div>
-
-                    <div>
-                        <S.FormInput
-                            name="city"
-                            placeholder="Cidade"
-                            value={deliveryForm.values.city}
-                            onChange={deliveryForm.handleChange}
-                            onBlur={deliveryForm.handleBlur}
-                            className={checkInputHasError('city', deliveryForm) ? 'error' : ''}
-                        />
-                        {checkInputHasError('city', deliveryForm) && (
-                            <S.ErrorMessage>{deliveryForm.errors.city}</S.ErrorMessage>
-                        )}
-                    </div>
-
-                    <S.FormGroup className="small-inputs">
-                        <div>
-                            <MaskedField
-                                mask="99999-999"
-                                name="cep"
-                                value={deliveryForm.values.cep}
+                    <S.FormField>
+                        <S.FormLabel>Quem irá receber</S.FormLabel>
+                        <S.FormInputContainer>
+                            <S.FormInput
+                                name="deliverer"
+                                value={deliveryForm.values.deliverer}
                                 onChange={deliveryForm.handleChange}
                                 onBlur={deliveryForm.handleBlur}
-                                placeholder="CEP"
-                                className={checkInputHasError('cep', deliveryForm) ? 'error' : ''}
+                                className={checkInputHasError('deliverer', deliveryForm) ? 'error' : ''}
                             />
-                            {checkInputHasError('cep', deliveryForm) && (
-                                <S.ErrorMessage>{deliveryForm.errors.cep}</S.ErrorMessage>
+                            {checkInputHasError('deliverer', deliveryForm) && (
+                                <S.ErrorMessage>{deliveryForm.errors.deliverer}</S.ErrorMessage>
                             )}
-                        </div>
+                        </S.FormInputContainer>
+                    </S.FormField>
 
-                        <div>
-                            <MaskedField
-                                mask="99999999"
-                                name="number"
-                                value={deliveryForm.values.number}
-                                onChange={(e) => {
-                                    const value = e.target.value.replace(/\D/g, '').slice(0, 8);
-                                    deliveryForm.setFieldValue('number', value);
-                                }}
+                    <S.FormField>
+                        <S.FormLabel>Endereço</S.FormLabel>
+                        <S.FormInputContainer>
+                            <S.FormInput
+                                name="address"
+                                value={deliveryForm.values.address}
+                                onChange={deliveryForm.handleChange}
                                 onBlur={deliveryForm.handleBlur}
-                                placeholder="Número"
-                                className={checkInputHasError('number', deliveryForm) ? 'error' : ''}
+                                className={checkInputHasError('address', deliveryForm) ? 'error' : ''}
                             />
-                            {checkInputHasError('number', deliveryForm) && (
-                                <S.ErrorMessage>{deliveryForm.errors.number}</S.ErrorMessage>
+                            {checkInputHasError('address', deliveryForm) && (
+                                <S.ErrorMessage>{deliveryForm.errors.address}</S.ErrorMessage>
                             )}
-                        </div>
+                        </S.FormInputContainer>
+                    </S.FormField>
+
+                    <S.FormField>
+                        <S.FormLabel>Cidade</S.FormLabel>
+                        <S.FormInputContainer>
+                            <S.FormInput
+                                name="city"
+                                value={deliveryForm.values.city}
+                                onChange={deliveryForm.handleChange}
+                                onBlur={deliveryForm.handleBlur}
+                                className={checkInputHasError('city', deliveryForm) ? 'error' : ''}
+                            />
+                            {checkInputHasError('city', deliveryForm) && (
+                                <S.ErrorMessage>{deliveryForm.errors.city}</S.ErrorMessage>
+                            )}
+                        </S.FormInputContainer>
+                    </S.FormField>
+
+                    <S.FormGroup>
+                        <S.FormField>
+                            <S.FormLabel>CEP</S.FormLabel>
+                            <S.FormInputContainer>
+                                <MaskedField
+                                    mask="99999-999"
+                                    name="cep"
+                                    value={deliveryForm.values.cep}
+                                    onChange={deliveryForm.handleChange}
+                                    onBlur={deliveryForm.handleBlur}
+                                    className={checkInputHasError('cep', deliveryForm) ? 'error' : ''}
+                                />
+                                {checkInputHasError('cep', deliveryForm) && (
+                                    <S.ErrorMessage>{deliveryForm.errors.cep}</S.ErrorMessage>
+                                )}
+                            </S.FormInputContainer>
+                        </S.FormField>
+
+                        <S.FormField>
+                            <S.FormLabel>Número</S.FormLabel>
+                            <S.FormInputContainer>
+                                <MaskedField
+                                    mask="99999999"
+                                    name="number"
+                                    value={deliveryForm.values.number}
+                                    onChange={(e) => {
+                                        const value = e.target.value.replace(/\D/g, '').slice(0, 8);
+                                        deliveryForm.setFieldValue('number', value);
+                                    }}
+                                    onBlur={deliveryForm.handleBlur}
+                                    className={checkInputHasError('number', deliveryForm) ? 'error' : ''}
+                                />
+                                {checkInputHasError('number', deliveryForm) && (
+                                    <S.ErrorMessage>{deliveryForm.errors.number}</S.ErrorMessage>
+                                )}
+                            </S.FormInputContainer>
+                        </S.FormField>
                     </S.FormGroup>
 
-                    <S.FormInput
-                        name="complement"
-                        placeholder="Complemento (opcional)"
-                        value={deliveryForm.values.complement}
-                        onChange={deliveryForm.handleChange}
-                        onBlur={deliveryForm.handleBlur}
-                    />
+                    <S.FormField>
+                        <S.FormLabel>Complemento (opcional)</S.FormLabel>
+                        <S.FormInputContainer>
+                            <S.FormInput
+                                name="complement"
+                                value={deliveryForm.values.complement}
+                                onChange={deliveryForm.handleChange}
+                                onBlur={deliveryForm.handleBlur}
+                            />
+                        </S.FormInputContainer>
+                    </S.FormField>
 
                     <S.FormActions>
                         <S.CheckoutButton type="submit">Continuar com o pagamento</S.CheckoutButton>
@@ -255,102 +265,112 @@ const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose }) => {
                 <S.FormContainer onSubmit={paymentForm.handleSubmit}>
                     <S.FormTitle>Pagamento - Valor a pagar R$ {total.toFixed(2).replace('.', ',')}</S.FormTitle>
 
-                    <div>
-                        <S.FormInput
-                            name="cardName"
-                            placeholder="Nome no cartão"
-                            value={paymentForm.values.cardName}
-                            onChange={paymentForm.handleChange}
-                            onBlur={paymentForm.handleBlur}
-                            className={checkInputHasError('cardName', paymentForm) ? 'error' : ''}
-                        />
-                        {checkInputHasError('cardName', paymentForm) && (
-                            <S.ErrorMessage>{paymentForm.errors.cardName}</S.ErrorMessage>
-                        )}
-                    </div>
-
-                    <S.FormGroup className="small-inputs">
-                        <div>
-                            <MaskedField
-                                mask="9999 9999 9999 9999"
-                                name="cardNumber"
-                                value={paymentForm.values.cardNumber}
+                    <S.FormField>
+                        <S.FormLabel>Nome no cartão</S.FormLabel>
+                        <S.FormInputContainer>
+                            <S.FormInput
+                                name="cardName"
+                                value={paymentForm.values.cardName}
                                 onChange={paymentForm.handleChange}
                                 onBlur={paymentForm.handleBlur}
-                                placeholder="Número do cartão"
-                                className={checkInputHasError('cardNumber', paymentForm) ? 'error' : ''}
+                                className={checkInputHasError('cardName', paymentForm) ? 'error' : ''}
                             />
-                            {checkInputHasError('cardNumber', paymentForm) && (
-                                <S.ErrorMessage>{paymentForm.errors.cardNumber}</S.ErrorMessage>
+                            {checkInputHasError('cardName', paymentForm) && (
+                                <S.ErrorMessage>{paymentForm.errors.cardName}</S.ErrorMessage>
                             )}
-                        </div>
+                        </S.FormInputContainer>
+                    </S.FormField>
 
-                        <div>
-                            <MaskedField
-                                mask="9999"
-                                name="cvv"
-                                value={paymentForm.values.cvv}
-                                onChange={paymentForm.handleChange}
-                                onBlur={paymentForm.handleBlur}
-                                placeholder="CVV"
-                                className={checkInputHasError('cvv', paymentForm) ? 'error' : ''}
-                            />
-                            {checkInputHasError('cvv', paymentForm) && (
-                                <S.ErrorMessage>{paymentForm.errors.cvv}</S.ErrorMessage>
-                            )}
-                        </div>
+                    <S.FormGroup>
+                        <S.FormField style={{ flex: 1 }}>
+                            <S.FormLabel>Número do cartão</S.FormLabel>
+                            <S.FormInputContainer>
+                                <MaskedField
+                                    mask="9999 9999 9999 9999"
+                                    name="cardNumber"
+                                    value={paymentForm.values.cardNumber}
+                                    onChange={paymentForm.handleChange}
+                                    onBlur={paymentForm.handleBlur}
+                                    className={checkInputHasError('cardNumber', paymentForm) ? 'error' : ''}
+                                />
+                                {checkInputHasError('cardNumber', paymentForm) && (
+                                    <S.ErrorMessage>{paymentForm.errors.cardNumber}</S.ErrorMessage>
+                                )}
+                            </S.FormInputContainer>
+                        </S.FormField>
+
+                        <S.FormField style={{ flex: 1 }}>
+                            <S.FormLabel>CVV</S.FormLabel>
+                            <S.FormInputContainer>
+                                <MaskedField
+                                    mask="9999"
+                                    name="cvv"
+                                    value={paymentForm.values.cvv}
+                                    onChange={paymentForm.handleChange}
+                                    onBlur={paymentForm.handleBlur}
+                                    className={checkInputHasError('cvv', paymentForm) ? 'error' : ''}
+                                />
+                                {checkInputHasError('cvv', paymentForm) && (
+                                    <S.ErrorMessage>{paymentForm.errors.cvv}</S.ErrorMessage>
+                                )}
+                            </S.FormInputContainer>
+                        </S.FormField>
                     </S.FormGroup>
 
-                    <S.FormGroup className="small-inputs">
-                        <div>
-                            <MaskedField
-                                mask="99"
-                                name="expiryMonth"
-                                value={paymentForm.values.expiryMonth}
-                                onChange={(e) => {
-                                    const value = e.target.value.replace(/\D/g, '').slice(0, 2);
-                                    paymentForm.setFieldValue('expiryMonth', value);
-                                }}
-                                onBlur={(e) => {
-                                    const month = parseInt(paymentForm.values.expiryMonth || '0');
-                                    if (month < 1) paymentForm.setFieldValue('expiryMonth', '01');
-                                    if (month > 12) paymentForm.setFieldValue('expiryMonth', '12');
-                                    paymentForm.handleBlur(e);
-                                }}
-                                placeholder="Mês"
-                                className={checkInputHasError('expiryMonth', paymentForm) ? 'error' : ''}
-                            />
-                            {checkInputHasError('expiryMonth', paymentForm) && (
-                                <S.ErrorMessage>{paymentForm.errors.expiryMonth}</S.ErrorMessage>
-                            )}
-                        </div>
+                    <S.FormGroup>
+                        <S.FormField>
+                            <S.FormLabel>Mês de vencimento</S.FormLabel>
+                            <S.FormInputContainer>
+                                <MaskedField
+                                    mask="99"
+                                    name="expiryMonth"
+                                    value={paymentForm.values.expiryMonth}
+                                    onChange={(e) => {
+                                        const value = e.target.value.replace(/\D/g, '').slice(0, 2);
+                                        paymentForm.setFieldValue('expiryMonth', value);
+                                    }}
+                                    onBlur={(e) => {
+                                        const month = parseInt(paymentForm.values.expiryMonth || '0');
+                                        if (month < 1) paymentForm.setFieldValue('expiryMonth', '01');
+                                        if (month > 12) paymentForm.setFieldValue('expiryMonth', '12');
+                                        paymentForm.handleBlur(e);
+                                    }}
+                                    className={checkInputHasError('expiryMonth', paymentForm) ? 'error' : ''}
+                                />
+                                {checkInputHasError('expiryMonth', paymentForm) && (
+                                    <S.ErrorMessage>{paymentForm.errors.expiryMonth}</S.ErrorMessage>
+                                )}
+                            </S.FormInputContainer>
+                        </S.FormField>
 
-                        <div>
-                            <MaskedField
-                                mask="9999"
-                                name="expiryYear"
-                                value={paymentForm.values.expiryYear}
-                                onChange={(e) => {
-                                    const value = e.target.value.replace(/\D/g, '').slice(0, 4);
-                                    paymentForm.setFieldValue('expiryYear', value);
-                                }}
-                                onBlur={(e) => {
-                                    const currentYear = new Date().getFullYear();
-                                    const enteredYear = parseInt(paymentForm.values.expiryYear || '0');
+                        <S.FormField>
+                            <S.FormLabel>Ano de vencimento</S.FormLabel>
+                            <S.FormInputContainer>
+                                <MaskedField
+                                    mask="9999"
+                                    name="expiryYear"
+                                    value={paymentForm.values.expiryYear}
+                                    onChange={(e) => {
+                                        const value = e.target.value.replace(/\D/g, '').slice(0, 4);
+                                        paymentForm.setFieldValue('expiryYear', value);
+                                    }}
+                                    onBlur={(e) => {
+                                        const currentYear = new Date().getFullYear();
+                                        const enteredYear = parseInt(paymentForm.values.expiryYear || '0');
 
-                                    if (enteredYear < currentYear) {
-                                        paymentForm.setFieldValue('expiryYear', currentYear.toString());
-                                    }
+                                        if (enteredYear < currentYear) {
+                                            paymentForm.setFieldValue('expiryYear', currentYear.toString());
+                                        }
 
-                                    paymentForm.handleBlur(e);
-                                }}
-                                placeholder="Ano"
-                                className={checkInputHasError('expiryYear', paymentForm) ? 'error' : ''}
-                            />
-                            {checkInputHasError('expiryYear', paymentForm) && (
-                                <S.ErrorMessage>{paymentForm.errors.expiryYear}</S.ErrorMessage>
-                            )}
-                        </div>
+                                        paymentForm.handleBlur(e);
+                                    }}
+                                    className={checkInputHasError('expiryYear', paymentForm) ? 'error' : ''}
+                                />
+                                {checkInputHasError('expiryYear', paymentForm) && (
+                                    <S.ErrorMessage>{paymentForm.errors.expiryYear}</S.ErrorMessage>
+                                )}
+                            </S.FormInputContainer>
+                        </S.FormField>
                     </S.FormGroup>
 
                     <S.FormActions>
@@ -365,16 +385,11 @@ const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose }) => {
             {step === 'success' && (
                 <div>
                     <S.SuccessMessage>
-                        <h3>Pedido confirmado com sucesso!</h3>
-                        <p>Nossa equipe agradeçe por escolher o nosso restaurante. Seu pedido está sendo preparado com carinho e chegará em <strong> até 40 minutos</strong>.</p>
-                        {orderId && (
-                            <p style={{ margin: "15px 0" }}>
-                                Seu número de acompanhamento: <strong>{orderId}</strong>
-                            </p>
-                        )}
-                        <p style={{ fontStyle: "italic", marginTop: 10 }}>
-                            Bom apetite! Qualquer dúvida, estamos à disposição.
-                        </p>
+                        <h3>Pedido realizado - {orderId}</h3>
+                        <p> Estamos felizes em informar que seu pedido já está em processo de preparação e, em breve, será entregue no endereço fornecido. </p>
+                        <p> Gostaríamos de ressaltar que nossos entregadores não estão autorizados a realizar cobranças extras.</p>
+                        <p> Lembre-se da importância de higienizar as mãos após o recebimento do pedido, garantindo assim sua segurança e bem-estar durante a refeição.</p>
+                        <p> Esperamos que desfrute de uma deliciosa e agradável experiência gastronômica. Bom apetite!</p>
                     </S.SuccessMessage>
 
                     <S.CheckoutButton onClick={resetAll}>
