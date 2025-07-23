@@ -21,9 +21,7 @@ interface FoodCardProps {
     image: string;
     name: string;
     description: string;
-    price: number;
-    serves: string;
-    onAddToCart: () => void;
+    onOpenModal: () => void;
     onImageClick: () => void;
 }
 
