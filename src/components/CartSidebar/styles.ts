@@ -114,7 +114,7 @@ export const DeleteButton = styled.button`
 export const TotalText = styled.p`
     display: flex;
     justify-content: space-between;
-    color: white;
+    color: #FFEBD9;
     font-size: 15px;
     font-weight: bold;
     margin: 20px 0;
@@ -174,7 +174,6 @@ export const ItemQuantity = styled.span`
 export const FormContainer = styled.form`
     display: flex;
     flex-direction: column;
-    gap: 15px;
 `;
 
 export const FormTitle = styled.h2`
@@ -191,16 +190,30 @@ export const FormInput = styled.input`
     padding: 12px 15px;
     font-size: 14px;
     width: 100%;
+    height: 30px;
     box-sizing: border-box;
-
-    &::placeholder {
-        color: #e86464;
-        opacity: 0.7;
-    }
 
     &.error {
         outline: 2px solid #ffebee;
     }
+`;
+
+export const FormField = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 12px;
+`;
+
+export const FormLabel = styled.label`
+    color: #FFEBD9;
+    font-size: 14px;
+    font-weight: bold;
+    padding-bottom: 5px;
+`;
+
+export const FormInputContainer = styled.div`
+    position: relative;
 `;
 
 export const FormGroup = styled.div`
@@ -243,8 +256,7 @@ export const BackButton = styled.button`
 `;
 
 export const SuccessMessage = styled.div`
-    color: white;
-    text-align: center;
+    color: #FFEBD9;
     margin-bottom: 30px;
 
     h3 {
@@ -254,7 +266,8 @@ export const SuccessMessage = styled.div`
 
     p {
         margin-bottom: 10px;
-        line-height: 1.5;
+        font-size: 13px;
+        font-weight: 400;
     }
 `;
 
