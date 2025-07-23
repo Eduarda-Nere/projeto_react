@@ -136,7 +136,10 @@ const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose }) => {
                                 </S.CartItem>
                             ))}
 
-                            <S.TotalText>Valor total: R$ {total.toFixed(2).replace('.', ',')}</S.TotalText>
+                            <S.TotalText>
+                                <S.TotalLabel>Valor total</S.TotalLabel>
+                                <S.TotalValue>R$ {total.toFixed(2).replace('.', ',')}</S.TotalValue>
+                            </S.TotalText>
                             <S.CheckoutButton
                                 onClick={() => setStep('delivery')}
                                 disabled={items.length === 0}
