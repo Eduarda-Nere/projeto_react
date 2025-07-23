@@ -107,13 +107,23 @@ export const DeleteButton = styled.button`
 `;
 
 export const TotalText = styled.p`
+    display: flex;
+    justify-content: space-between;
     color: white;
     font-size: 15px;
     font-weight: bold;
-    margin: 20px 0 10px 0;
-    text-align: center;
-    padding: 10px;
-    background: rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+`;
+
+export const TotalLabel = styled.span`
+    font-size: 15px;
+    font-weight: bold;
+`;
+
+export const TotalValue = styled.span`
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
 `;
 
 export const CheckoutButton = styled.button`
