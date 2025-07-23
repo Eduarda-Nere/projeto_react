@@ -185,7 +185,7 @@ export const FormTitle = styled.h2`
 `;
 
 export const FormInput = styled.input`
-    background-color: #fcfaf3;
+    background-color: #fcecdc;
     color: #e86464;
     border: none;
     padding: 12px 15px;
@@ -200,7 +200,6 @@ export const FormInput = styled.input`
 
     &.error {
         outline: 2px solid #ffebee;
-        background-color: #fff5f5;
     }
 `;
 
