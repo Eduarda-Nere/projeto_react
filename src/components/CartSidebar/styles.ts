@@ -11,11 +11,11 @@ export const SidebarContainer = styled.div<SidebarContainerProps>`
     width: 350px;
     height: 100vh;
     background-color: #e86464;
-    padding: 85px 20px 20px 20px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     z-index: 1001;
-    overflow-y: auto;
+    overflow-x: visible;
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
     transform: translateX(${props => props.$isOpen ? '0' : '100%'});
@@ -26,20 +26,19 @@ export const SidebarContainer = styled.div<SidebarContainerProps>`
     }
 `;
 
-export const CloseSidebarButton = styled.button`
+export const CloseSidebarButton = styled.button<{ $isOpen: boolean }>`
     position: absolute;
     top: 16px;
-    right: 16px;
+    left: -42px;
     background: rgba(255, 255, 255, 0.2);
-    border: none;
     color: white;
     font-size: 24px;
     font-weight: bold;
     cursor: pointer;
-    z-index: 10;
+    z-index: 1001;
     width: 36px;
     height: 36px;
-    display: flex;
+    display: ${props => props.$isOpen ? 'flex' : 'none'};
     align-items: center;
     justify-content: center;
     border-radius: 50%;
@@ -47,6 +46,12 @@ export const CloseSidebarButton = styled.button`
 
     &:hover {
         background: rgba(255, 255, 255, 0.3);
+    }
+
+    @media (max-width: 576px) {
+        left: auto;
+        right: 16px;
+        display: ${props => props.$isOpen ? 'flex' : 'none'};
     }
 `;
 
