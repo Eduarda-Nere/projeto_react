@@ -100,9 +100,7 @@ const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose }) => {
 
     return (
         <S.SidebarContainer $isOpen={isOpen}>
-            <S.CloseSidebarButton onClick={onClose} aria-label="Fechar carrinho">
-                ×
-            </S.CloseSidebarButton>
+            <S.CloseSidebarButton $isOpen={isOpen} onClick={onClose}>×</S.CloseSidebarButton>
 
             {step === 'cart' && (
                 <>
