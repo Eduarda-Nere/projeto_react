@@ -56,7 +56,7 @@ export const CloseSidebarButton = styled.button<{ $isOpen: boolean }>`
 `;
 
 export const CartItem = styled.div`
-    background-color: #fcecdc;
+    background-color: #FFEBD9;
     padding: 15px;
     margin-bottom: 15px;
     display: flex;
@@ -132,7 +132,7 @@ export const TotalValue = styled.span`
 `;
 
 export const CheckoutButton = styled.button`
-    background-color: #fcecdc;
+    background-color: #FFEBD9;
     color: #e86464;
     border: none;
     font-size: 14px;
@@ -178,14 +178,14 @@ export const FormContainer = styled.form`
 `;
 
 export const FormTitle = styled.h2`
-    color: white;
+    color: #FFEBD9;
     font-size: 18px;
     margin-bottom: 15px;
     text-align: center;
 `;
 
 export const FormInput = styled.input`
-    background-color: #fcecdc;
+    background-color: #FFEBD9;
     color: #e86464;
     border: none;
     padding: 12px 15px;
