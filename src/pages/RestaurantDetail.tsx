@@ -42,6 +42,7 @@ const RestaurantDetails: React.FC<{
     const [restaurant, setRestaurant] = useState<Restaurant | null>(null);
     const [loading, setLoading] = useState(true);
     const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const cartItems = useSelector((state: RootState) => state.cart.items);
     const dispatch = useDispatch();
 
@@ -70,9 +71,15 @@ const RestaurantDetails: React.FC<{
         onCartClick();
     };
 
-    const handleImageClick = (item: MenuItem) => {
-        onModalOpen();
+    const openModal = (item: MenuItem) => {
         setSelectedItem(item);
+        setIsModalOpen(true);
+        onModalOpen();
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setSelectedItem(null);
     };
 
     if (loading) return <LoadingPage />;
@@ -106,24 +113,24 @@ const RestaurantDetails: React.FC<{
                             image={item.foto}
                             name={item.nome}
                             description={item.descricao}
-                            onAddToCart={() => handleAddToCart(item)}
-                            onImageClick={() => handleImageClick(item)}
+                            onOpenModal={() => openModal(item)}
+                            onImageClick={() => openModal(item)}
                         />
                     ))}
                 </FoodCardStyles.Container>
             </FoodListContainer>
 
-            {selectedItem && (
+            {isModalOpen && selectedItem && (
                 <FoodModal
                     image={selectedItem.foto}
                     name={selectedItem.nome}
                     description={selectedItem.descricao}
                     price={selectedItem.preco}
                     serves={selectedItem.porcao}
-                    onClose={() => setSelectedItem(null)}
+                    onClose={closeModal}
                     onAddToCart={() => {
                         handleAddToCart(selectedItem);
-                        setSelectedItem(null);
+                        closeModal();
                     }}
                 />
             )}
