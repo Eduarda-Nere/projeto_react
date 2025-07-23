@@ -110,7 +110,7 @@ export const ServesInfo = styled.p`
 `;
 
 export const AddToCartButton = styled.button`
-    background-color: #fcfaf3;
+    background-color: #FFEBD9;
     color: #e86464;
     border: none;
     padding: 8px;
