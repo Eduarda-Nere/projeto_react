@@ -5,7 +5,7 @@ interface FoodCardProps {
     image: string;
     name: string;
     description: string;
-    onAddToCart: () => void;
+    onOpenModal: () => void;
     onImageClick: () => void;
 }
 
@@ -13,21 +13,26 @@ const FoodCard: React.FC<FoodCardProps> = ({
     image,
     name,
     description,
-    onAddToCart,
+    onOpenModal,  
     onImageClick
 }) => {
+    const handleAddToCartClick = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        onOpenModal();
+    };
+
     return (
         <S.FoodCardContainer>
-        <S.FoodImageWrapper onClick={onImageClick}>
-            <S.FoodImage src={image} alt={name} />
-        </S.FoodImageWrapper>
-        <S.FoodContent>
-            <S.FoodName>{name}</S.FoodName>
-            <S.FoodDescription>{description}</S.FoodDescription>
-            <S.AddToCartButton onClick={onAddToCart}>
-                Adicionar ao carrinho
-            </S.AddToCartButton>
-        </S.FoodContent>
+            <S.FoodImageWrapper onClick={onImageClick}>
+                <S.FoodImage src={image} alt={name} />
+            </S.FoodImageWrapper>
+            <S.FoodContent>
+                <S.FoodName>{name}</S.FoodName>
+                <S.FoodDescription>{description}</S.FoodDescription>
+                <S.AddToCartButton onClick={handleAddToCartClick}>
+                    Adicionar ao carrinho
+                </S.AddToCartButton>
+            </S.FoodContent>
         </S.FoodCardContainer>
     );
 };
