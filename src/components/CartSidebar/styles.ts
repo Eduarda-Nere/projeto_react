@@ -57,6 +57,8 @@ export const CartItem = styled.div`
     display: flex;
     align-items: center;
     gap: 12px;
+    position: relative;
+    min-height: 85px;
 `;
 
 export const ItemImage = styled.img`
@@ -82,13 +84,26 @@ export const ItemPrice = styled.span`
 `;
 
 export const DeleteButton = styled.button`
+    position: absolute;  
+    bottom: 8px;       
+    right: 8px;      
     background: none;
     border: none;
     color: #e86464;
     cursor: pointer;
     font-size: 18px;
-    padding-top: 12px;
-    align-self: flex-start;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.3);
+    }
 `;
 
 export const TotalText = styled.p`
