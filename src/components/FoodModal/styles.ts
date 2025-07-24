@@ -119,6 +119,7 @@ export const AddToCartButton = styled.button`
     cursor: pointer;
     width: 100%;
     margin-top: auto;
+    height: 34px;
 
     @media (max-width: 768px) {
         font-size: 12px;
